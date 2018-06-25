@@ -1,0 +1,259 @@
+<html>
+<head>
+<title>
+Domino Test
+</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<style>
+
+/* TITLE AND NAVIGATION */
+
+.title-bar{
+    text-align: center;
+}
+
+.wrapper{
+    width: 98%;
+}
+
+/* TABLE */
+
+.table{
+    width: 75%;
+    height: 300px;
+    background-color: rgb(230, 230, 230);
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    vertical-align: top;
+    overflow-x: scroll;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.score{
+    width: 10%;
+    height: 300px;
+    background-color: rgb(230, 230, 230);
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.chat{
+    width: 14%;
+    height: 300px;
+    background-color: rgb(230, 230, 230);
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.opponent-hand{
+    background-color: rgb(173, 173, 173);
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.opponent-hand .domino:hover{
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    cursor: default;
+}
+
+.my-hand{
+    background-color: rgb(173, 173, 173);
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.my-hand .domino:hover{
+    -webkit-box-shadow: 0px 0px 3px 3px rgba(118,209,52,1);
+    -moz-box-shadow: 0px 0px 3px 3px rgba(118,209,52,1);
+    box-shadow: 0px 0px 3px 3px rgba(118,209,52,1);
+    cursor: pointer;
+}
+
+/* BONE CONTAINERS */
+
+.domino{
+    padding: 0px 3px;
+    background-color: #000;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.domino:hover{
+    -webkit-box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
+    -moz-box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
+    box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
+}
+
+.vertical i:first-child{
+    display: block;
+    margin-bottom: -1px;
+}
+
+.horizontal i:first-child{
+    margin-right: 5px;
+}
+
+.origin{
+    margin-top: 5%;
+    border: 3px solid grey;
+    border-radius: 10px;
+}
+
+/* DICE/NUMBER DISPLAY */
+
+.fas{
+    color: #fff;
+    margin: 0px;
+}
+
+.fa-dice-one{
+    border-radius: 15px;
+    background: #000000;
+    background: -moz-linear-gradient(top,  #000000 15%, #b42c2c 17%, #b42c2c 83%, #000000 85%);
+    background: -webkit-linear-gradient(top,  #000000 15%,#b42c2c 17%,#b42c2c 83%,#000000 85%);
+    background: linear-gradient(to bottom,  #000000 15%,#b42c2c 17%,#b42c2c 83%,#000000 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=0 );
+
+}
+
+.fa-dice-two{
+    border-radius: 15px;
+    background: #000000;
+    background: -moz-linear-gradient(top,  #000000 15%, #da882b 17%, #da882b 83%, #000000 85%);
+    background: -webkit-linear-gradient(top,  #000000 15%,#da882b 17%,#da882b 83%,#000000 85%);
+    background: linear-gradient(to bottom,  #000000 15%,#da882b 17%,#da882b 83%,#000000 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=0 );
+
+}
+
+.fa-dice-three{
+    border-radius: 15px;
+    background: #000000;
+    background: -moz-linear-gradient(top,  #000000 15%, #ffd000 17%, #ffd000 83%, #000000 85%);
+    background: -webkit-linear-gradient(top,  #000000 15%,#ffd000 17%,#ffd000 83%,#000000 85%);
+    background: linear-gradient(to bottom,  #000000 15%,#ffd000 17%,#ffd000 83%,#000000 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=0 );
+
+}
+
+.fa-dice-four{
+    border-radius: 15px;
+    background: #000000;
+    background: -moz-linear-gradient(top,  #000000 15%, #60b90b 17%, #60b90b 83%, #000000 85%);
+    background: -webkit-linear-gradient(top,  #000000 15%,#60b90b 17%,#60b90b 83%,#000000 85%);
+    background: linear-gradient(to bottom,  #000000 15%,#60b90b 17%,#60b90b 83%,#000000 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=0 );
+
+}
+
+.fa-dice-five{
+    border-radius: 15px;
+    background: #000000;
+    background: -moz-linear-gradient(top,  #000000 15%, #207cca 17%, #207cca 83%, #000000 85%);
+    background: -webkit-linear-gradient(top,  #000000 15%,#207cca 17%,#207cca 83%,#000000 85%);
+    background: linear-gradient(to bottom,  #000000 15%,#207cca 17%,#207cca 83%,#000000 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=0 );
+
+}
+
+.fa-dice-six{
+    border-radius: 15px;
+    background: #000000;
+    background: -moz-linear-gradient(top,  #000000 15%, #a820ca 17%, #a820ca 83%, #000000 85%);
+    background: -webkit-linear-gradient(top,  #000000 15%,#a820ca 17%,#a820ca 83%,#000000 85%);
+    background: linear-gradient(to bottom,  #000000 15%,#a820ca 17%,#a820ca 83%,#000000 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=0 );
+
+}
+
+</style>
+
+</head>
+<body>
+   <div class="wrapper"> 
+
+    <div class="title-bar">
+        <h1>Dominos!</h1>
+        <div class="navigation">
+                <button type="button" class="btn btn-secondary">Home</button>
+                <button type="button" class="btn btn-secondary">Leave Game</button>
+                <button type="button" class="btn btn-secondary">Leaderboard</button>
+                <button type="button" class="btn btn-danger">Log Out</button>
+                <br><br>
+            </div>
+    </div>
+
+<div class="opponent-hand">
+        <div class="domino vertical"><i class="fas fa-square fa-3x" class="head"></i><i class="fas fa-square fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-square fa-3x" class="head"></i><i class="fas fa-square fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-square fa-3x" class="head"></i><i class="fas fa-square fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-square fa-3x" class="head"></i><i class="fas fa-square fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-square fa-3x" class="head"></i><i class="fas fa-square fa-3x" class="tail"></i></div>
+</div>
+
+<div class="score">
+        <h3>Score</h3>
+        <p>Player One: <br>
+            101
+        </p>
+
+        <p>Player Two: <br>
+            0
+        </p><br>
+    
+    
+    </div>
+
+<div class="table">
+
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+
+    <div class="domino vertical origin"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-dice-one fa-4x" class="tail"></i></div>
+
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino vertical"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-five fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+
+</div>
+
+<div class="chat"><h3>Chat</h3></div>
+
+<div class="my-hand">
+        <div class="domino vertical"><i class="fas fa-dice-three fa-3x" class="head"></i><i class="fas fa-dice-four fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-five fa-3x" class="head"></i><i class="fas fa-dice-six fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-one fa-3x" class="head"></i><i class="fas fa-square fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-three fa-3x" class="head"></i><i class="fas fa-dice-four fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-five fa-3x" class="head"></i><i class="fas fa-dice-five fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-one fa-3x" class="head"></i><i class="fas fa-square fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-three fa-3x" class="head"></i><i class="fas fa-dice-four fa-3x" class="tail"></i></div>
+</div>
+</div>
+
+</body>
+</html>
