@@ -1,0 +1,64 @@
+<p>
+  login works!
+</p>
+
+<form name='loginForm' #loginForm='ngForm' method='post' (submit)="login(loginForm)">
+  <h2>Login</h2>
+  
+  
+  <label >Email</label>
+    <input type='text' name='email'  
+    [(ngModel)]='loginUser.email'
+    #email="ngModel"
+    required
+    minlength="3"
+    ><br>
+
+    <label>Password</label>
+    <input type='password' name='password'
+    [(ngModel)]='loginUser.password'
+    #password='ngModel'
+    required
+    minlength="8"
+    ><br>
+    <button [disabled]="!loginForm.valid">Login</button>
+</form>
+
+
+<h2>Register</h2>
+<form method='post' name="newUserForm" #newUserForm='ngForm' (submit)="signUp(newUserForm)">
+  <label >First Name</label>
+    <input type='text' name='first_name'
+    [(ngModel)]='createUser.first_name' 
+    #first_name='ngModel'
+    required
+    minlength="3"
+    
+    
+    ><br>
+    <label >Last Name</label>
+    <input type='text' name='last_name'
+    [(ngModel)]='createUser.last_name' 
+    #last_name='ngModel'
+    required
+    minlength="3"
+    
+    ><br>
+    <label >Email</label>
+    <input type='text' name='email'  
+    [(ngModel)]='createUser.email'
+    #email="ngModel"
+    required
+    minlength="3"
+    ><br>
+
+
+    <label>Password</label>
+    <input type='password' name='password'
+    [(ngModel)]='createUser.password'
+    #password='ngModel'
+    required
+    minlength="8"
+    ><br>
+    <button [disabled]="!newUserForm.valid" >Register</button>
+</form>
