@@ -1,0 +1,286 @@
+<html>
+<head>
+<title>
+Domino Test
+</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<style>
+
+/* TITLE AND NAVIGATION */
+
+.title-bar{
+    text-align: center;
+}
+
+.wrapper{
+    width: 98%;
+}
+
+body{
+    background-image: url('bg.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    color: #5A6268;
+}
+
+/* TABLE */
+
+.table{
+    width: 75%;
+    height: 300px;
+    background-color: #cad7e270;
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    vertical-align: top;
+    overflow-x: scroll;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.score{
+    width: 10%;
+    height: 300px;
+    background-color: #cad7e270;
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.chat-container{
+    width: 14%;
+    height: 300px;
+    background-color: #cad7e270;
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.chat-inner{
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.opponent-hand{
+    background-color: #a3aeb770;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.opponent-hand .domino{
+    border-radius: 3px;
+}
+
+.opponent-hand .domino:hover{
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    cursor: default;
+}
+
+.my-hand{
+    background-color: #a3aeb770;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.my-hand .domino:hover{
+    -webkit-box-shadow: 0px 0px 3px 3px rgba(118,209,52,1);
+    -moz-box-shadow: 0px 0px 3px 3px rgba(118,209,52,1);
+    box-shadow: 0px 0px 3px 3px rgba(118,209,52,1);
+    cursor: pointer;
+    margin-top: -15px;
+}
+
+/* BONE CONTAINERS */
+
+.domino{
+    padding: 0px 3px;
+    background-color: #5A6268;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.domino:hover{
+    -webkit-box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
+    -moz-box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
+    box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
+}
+
+.vertical i:first-child{
+    display: block;
+    margin-bottom: -1px;
+}
+
+.horizontal i:first-child{
+    margin-right: 5px;
+}
+
+.origin{
+    margin-top: 5%;
+    border: 2px solid #222628;
+    border-radius: 10px;
+}
+
+/* DICE/NUMBER DISPLAY */
+
+.fas{
+    color: #fff;
+    margin: 0px;
+}
+
+.fa-dice-one{
+    border-radius: 15px;
+    background: #5A6268;
+    background: -moz-linear-gradient(top,  #5A6268 15%, #b42c2c 17%, #b42c2c 83%, #5A6268 85%);
+    background: -webkit-linear-gradient(top,  #5A6268 15%,#b42c2c 17%,#b42c2c 83%,#5A6268 85%);
+    background: linear-gradient(to bottom,  #5A6268 15%,#b42c2c 17%,#b42c2c 83%,#5A6268 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5A6268', endColorstr='#5A6268',GradientType=0 );
+
+}
+
+.fa-dice-two{
+    border-radius: 15px;
+    background: #5A6268;
+    background: -moz-linear-gradient(top,  #5A6268 15%, #da882b 17%, #da882b 83%, #5A6268 85%);
+    background: -webkit-linear-gradient(top,  #5A6268 15%,#da882b 17%,#da882b 83%,#5A6268 85%);
+    background: linear-gradient(to bottom,  #5A6268 15%,#da882b 17%,#da882b 83%,#5A6268 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5A6268', endColorstr='#5A6268',GradientType=0 );
+
+}
+
+.fa-dice-three{
+    border-radius: 15px;
+    background: #5A6268;
+    background: -moz-linear-gradient(top,  #5A6268 15%, #ffd000 17%, #ffd000 83%, #5A6268 85%);
+    background: -webkit-linear-gradient(top,  #5A6268 15%,#ffd000 17%,#ffd000 83%,#5A6268 85%);
+    background: linear-gradient(to bottom,  #5A6268 15%,#ffd000 17%,#ffd000 83%,#5A6268 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5A6268', endColorstr='#5A6268',GradientType=0 );
+
+}
+
+.fa-dice-four{
+    border-radius: 15px;
+    background: #5A6268;
+    background: -moz-linear-gradient(top,  #5A6268 15%, #60b90b 17%, #60b90b 83%, #5A6268 85%);
+    background: -webkit-linear-gradient(top,  #5A6268 15%,#60b90b 17%,#60b90b 83%,#5A6268 85%);
+    background: linear-gradient(to bottom,  #5A6268 15%,#60b90b 17%,#60b90b 83%,#5A6268 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5A6268', endColorstr='#5A6268',GradientType=0 );
+
+}
+
+.fa-dice-five{
+    border-radius: 15px;
+    background: #5A6268;
+    background: -moz-linear-gradient(top,  #5A6268 15%, #207cca 17%, #207cca 83%, #5A6268 85%);
+    background: -webkit-linear-gradient(top,  #5A6268 15%,#207cca 17%,#207cca 83%,#5A6268 85%);
+    background: linear-gradient(to bottom,  #5A6268 15%,#207cca 17%,#207cca 83%,#5A6268 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5A6268', endColorstr='#5A6268',GradientType=0 );
+
+}
+
+.fa-dice-six{
+    border-radius: 15px;
+    background: #5A6268;
+    background: -moz-linear-gradient(top,  #5A6268 15%, #a820ca 17%, #a820ca 83%, #5A6268 85%);
+    background: -webkit-linear-gradient(top,  #5A6268 15%,#a820ca 17%,#a820ca 83%,#5A6268 85%);
+    background: linear-gradient(to bottom,  #5A6268 15%,#a820ca 17%,#a820ca 83%,#5A6268 85%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5A6268', endColorstr='#5A6268',GradientType=0 );
+
+}
+
+</style>
+
+</head>
+<body>
+   <div class="wrapper"> 
+
+    <div class="title-bar">
+        <img src="logo.png" width="400px">
+        <div class="navigation">
+                <button type="button" class="btn btn-secondary">Home</button>
+                <button type="button" class="btn btn-secondary">Leave Game</button>
+                <button type="button" class="btn btn-secondary">Leaderboard</button>
+                <button type="button" class="btn btn-danger">Log Out</button>
+                <br><br>
+            </div>
+    </div>
+
+<div class="opponent-hand">
+        <div class="domino vertical"><i class="fas fa-square fa-2x" class="head"></i><i class="fas fa-square fa-2x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-square fa-2x" class="head"></i><i class="fas fa-square fa-2x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-square fa-2x" class="head"></i><i class="fas fa-square fa-2x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-square fa-2x" class="head"></i><i class="fas fa-square fa-2x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-square fa-2x" class="head"></i><i class="fas fa-square fa-2x" class="tail"></i></div>
+</div>
+
+<div class="score">
+        <h4>Score</h4>
+        <p>Player One: <br>
+            101
+        </p>
+
+        <p>Player Two: <br>
+            0
+        </p><br>
+    
+    
+    </div>
+
+<div class="table">
+
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+
+    <div class="domino vertical origin"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-dice-one fa-4x" class="tail"></i></div>
+
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino vertical"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-five fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-three fa-4x" class="head"></i><i class="fas fa-dice-four fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-five fa-4x" class="head"></i><i class="fas fa-dice-six fa-4x" class="tail"></i></div>
+    <div class="domino horizontal"><i class="fas fa-dice-one fa-4x" class="head"></i><i class="fas fa-square fa-4x" class="tail"></i></div>
+
+</div>
+
+<div class="chat-container">
+    <h4>Chat</h4>
+    <div class="chat-inner">
+        <p>Player One: Hey!</p>
+        <p>Player Two: What's up?</p>
+        <p>Player One: Not much. But I'm going to beat you at dominos.</p>
+        <p>Player Two: Woah! Not a chance. I am a master of this game.</p>
+    </div>
+
+
+</div>
+
+<div class="my-hand">
+        <div class="domino vertical"><i class="fas fa-dice-three fa-3x" class="head"></i><i class="fas fa-dice-four fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-five fa-3x" class="head"></i><i class="fas fa-dice-six fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-one fa-3x" class="head"></i><i class="fas fa-square fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-three fa-3x" class="head"></i><i class="fas fa-dice-four fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-five fa-3x" class="head"></i><i class="fas fa-dice-five fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-one fa-3x" class="head"></i><i class="fas fa-square fa-3x" class="tail"></i></div>
+        <div class="domino vertical"><i class="fas fa-dice-three fa-3x" class="head"></i><i class="fas fa-dice-four fa-3x" class="tail"></i></div>
+</div>
+</div>
+
+</body>
+</html>
